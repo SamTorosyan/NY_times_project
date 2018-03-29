@@ -13,30 +13,27 @@ $("#searchButton").on(click(function(search) {  //The search button is calling a
 
     endYear = $("#endYear").val().trim();
 
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api_key=518f358f95c54095a2e77ca785eca4c0";
         
-    url += '?' + $.param({
-            'api-key': "c0d2bf9ca99e4c96a41735e8889e1e88"
-      
+   
     });
         
     $.ajax({
-        url: url,
-        method: 'GET',
-        })
-        .then(function(response) {
-        console.log(response);
-        })
-        .fail(function(err) {
-        throw err;
-        });
-
-
-    })
-
- 
-
-})
+        type: 'GET',
+        url: 'http://api.nytimes.com/svc/search/v2/articlesearch',
+        dataType: 'JSONP',
+        callback: '',
+        data: {
+            q: seaString,
+            response-format: "jsonp",
+            api-key: '518f358f95c54095a2e77ca785eca4c0',
+            callback: 'svc_search_v2_articlesearch'
+        },
+        success: function(data, textStats, XMLHttpRequest) {
+            // passed function object for data processing
+            console.log(data);
+        }
+    });
 
 })
 
