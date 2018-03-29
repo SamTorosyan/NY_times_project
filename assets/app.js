@@ -13,22 +13,30 @@ $("#searchButton").on(click(function(search) {  //The search button is calling a
 
     endYear = $("#endYear").val().trim();
 
-    var url = "http://developer.nytimes.com/article_search_v2.json";
-
-        url += '?' + $.param({  
-            'api-key': " ",
-            'q': "searchWords"  ///telling it to get info from whatever keys are entered in Search Words
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         
+    url += '?' + $.param({
+            'api-key': "c0d2bf9ca99e4c96a41735e8889e1e88"
+      
+    });
         
-
-
+    $.ajax({
+        url: url,
+        method: 'GET',
+        })
+        .then(function(response) {
+        console.log(response);
+        })
+        .fail(function(err) {
+        throw err;
         });
 
 
     })
 
+ 
+
 })
 
-
-
+})
 
